@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Age Converter</h1>
+    <p>Enter your age to see how many months, days, and hours old you are.</p>
+
+    
+    <label for="age">Age (in years):</label>
+    <input type="number" id="age" placeholder="Enter your age">
+    <br>
+    <button id="submitBtn" onclick="displayAgeDetails()">Submit</button>
+
+    <!--  results placeholder -->
+    <p id="months"></p>
+    <p id="days"></p>
+    <p id="hours"></p>
+</div>
+
+<script>
+// Function
+function calculateAgeDetails(ageInYears) {
+    const months = ageInYears * 12;
+    const days = ageInYears * 365; 
+    const hours = days * 24;
+    
+    return {
+        months: months,
+        days: days,
+        hours: hours
+    };
+}
+
+// Function 
+function displayAgeDetails() {
+    
+    const ageInYears = parseInt(document.getElementById("age").value, 10);
+    
+    
+    if (isNaN(ageInYears) || ageInYears <= 0) {
+        alert("Please enter a valid age greater than 0.");
+        return;
+    }
+    
+    // object
+    const ageDetails = calculateAgeDetails(ageInYears);
+    
+    // Display the result
+    document.getElementById("months").innerHTML = `You are approximately ${ageDetails.months} months old.`;
+    document.getElementById("days").innerHTML = `You are approximately ${ageDetails.days} days old.`;
+    document.getElementById("hours").innerHTML = `You are approximately ${ageDetails.hours} hours old.`;
+}
+
+// Event 
+function handleMouseOver() {
+    const button = document.getElementById("submitBtn");
+    button.innerHTML = "Click to Submit!";
+}
+
+// Event 
+function handleMouseOut() {
+    const button = document.getElementById("submitBtn");
+    button.innerHTML = "Submit";
+}
+
+
+document.getElementById("submitBtn").addEventListener("mouseover", handleMouseOver);
+document.getElementById("submitBtn").addEventListener("mouseout", handleMouseOut);
+</script>
+
+</body>
+</html>
