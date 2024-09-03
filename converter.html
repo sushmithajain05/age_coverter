@@ -59,6 +59,7 @@
 </div>
 
 <script>
+    console.log("hi")
 // Function
 function calculateAgeDetails(ageInYears) {
     const months = ageInYears * 12;
@@ -87,9 +88,9 @@ function displayAgeDetails() {
     const ageDetails = calculateAgeDetails(ageInYears);
     
     // Display the result
-    document.getElementById("months").innerHTML = `You are approximately ${ageDetails.months} months old.`;
-    document.getElementById("days").innerHTML = `You are approximately ${ageDetails.days} days old.`;
-    document.getElementById("hours").innerHTML = `You are approximately ${ageDetails.hours} hours old.`;
+    document.getElementById("months").innerHTML = `You are  ${ageDetails.months} months old.`;
+    document.getElementById("days").innerHTML = `You are  ${ageDetails.days} days old.`;
+    document.getElementById("hours").innerHTML = `You are  ${ageDetails.hours} hours old.`;
 }
 
 // Event 
