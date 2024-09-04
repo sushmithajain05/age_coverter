@@ -46,68 +46,64 @@
     <h1>Age Converter</h1>
     <p>Enter your age to see how many months, days, and hours old you are.</p>
 
-    
     <label for="age">Age (in years):</label>
     <input type="number" id="age" placeholder="Enter your age">
     <br>
     <button id="submitBtn" onclick="displayAgeDetails()">Submit</button>
 
-    <!--  results placeholder -->
-    <p id="months"></p>
-    <p id="days"></p>
-    <p id="hours"></p>
+    <!--  placeholder for result -->
+    <p id="results"></p>
 </div>
 
 <script>
     console.log("hi")
-// Function
-function calculateAgeDetails(ageInYears) {
-    const months = ageInYears * 12;
-    const days = ageInYears * 365; 
-    const hours = days * 24;
-    
-    return {
-        months: months,
-        days: days,
-        hours: hours
-    };
-}
 
-// Function 
-function displayAgeDetails() {
-    
-    const ageInYears = parseInt(document.getElementById("age").value, 10);
-    
-    
-    if (isNaN(ageInYears) || ageInYears <= 0) {
-        alert("Please enter a valid age greater than 0.");
-        return;
+    // Function to calculate age details
+    function calculateAgeDetails(ageInYears) {
+        const months = ageInYears * 12;
+        const days = ageInYears * 365; 
+        const hours = days * 24;
+        
+        return [months, days, hours]; // array
     }
+
+    // Function to display age details
+    function displayAgeDetails() {
+        const ageInYears = parseInt(document.getElementById("age").value, 10);
+        
+        if (isNaN(ageInYears) || ageInYears <= 0) {
+            alert("Please enter a valid age greater than 0.");
+            return;
+        }
+        
+        // Get age details as an array
+        const [months, days, hours] = calculateAgeDetails(ageInYears);
+        
+        // Display the result using array methods
+        const results = [
+            `You are ${months} months old.`,
+            `You are ${days} days old.`,
+            `You are ${hours} hours old.`
+        ];
+        
+        // Join the results with line breaks and display
+        document.getElementById("results").innerHTML = results.join("<br>");
+    }
+
+    // Event handlers
+    function handleMouseOver() {
+        const button = document.getElementById("submitBtn");
+        button.innerHTML = "Click to Submit!";
+    }
+
+    function handleMouseOut() {
+        const button = document.getElementById("submitBtn");
+        button.innerHTML = "Submit";
+    }
+
     
-    // object
-    const ageDetails = calculateAgeDetails(ageInYears);
-    
-    // Display the result
-    document.getElementById("months").innerHTML = `You are  ${ageDetails.months} months old.`;
-    document.getElementById("days").innerHTML = `You are  ${ageDetails.days} days old.`;
-    document.getElementById("hours").innerHTML = `You are  ${ageDetails.hours} hours old.`;
-}
-
-// Event 
-function handleMouseOver() {
-    const button = document.getElementById("submitBtn");
-    button.innerHTML = "Click to Submit!";
-}
-
-// Event 
-function handleMouseOut() {
-    const button = document.getElementById("submitBtn");
-    button.innerHTML = "Submit";
-}
-
-
-document.getElementById("submitBtn").addEventListener("mouseover", handleMouseOver);
-document.getElementById("submitBtn").addEventListener("mouseout", handleMouseOut);
+    document.getElementById("submitBtn").addEventListener("mouseover", handleMouseOver);
+    document.getElementById("submitBtn").addEventListener("mouseout", handleMouseOut);
 </script>
 
 </body>
